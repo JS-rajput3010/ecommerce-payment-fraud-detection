@@ -1,58 +1,64 @@
-# ecommerce-payment-fraud-detection
-A machine learning project to detect and prevent fraudulent transactions in e-commerce platforms.
-# E-Commerce Payment Fraud Detection
+
+E-Commerce Payment Fraud Detection
 
 A Machine Learning project designed to detect and prevent fraudulent financial transactions in e-commerce platforms. As global online shopping markets expand rapidly, payment fraud presents a significant financial challenge. This project leverages data analysis and predictive modeling to classify transactions as legitimate or fraudulent in real-time.
 
-## 📊 Problem Statement & Market Context
+📊 Problem Statement & Market Context
+
 According to recent Economic Survey trends, the surge in the e-commerce market correlates directly with an increasing risk of digital payment fraud. Out of hundreds of millions of active e-commerce shoppers globally, a notable percentage fall victim to transaction scams. This project builds a robust verification pipeline to solve this issue by flagging high-risk anomalies before payments are completed.
 
-## 🚀 Key Features
-* **Real-Time Fraud Classification:** Identifies fraudulent patterns instantly using machine learning models.
-* **Data Anomaly Detection:** Flags suspicious transaction amounts, geographical mismatches, or odd purchasing hours.
-* **Imbalanced Data Handling:** Utilizes techniques like SMOTE or class weighting to address the rarity of fraud instances in datasets.
+🚀 Key Features
 
-## 🛠️ Tech Stack & Frameworks
-* **Language:** Python
-* **Libraries:** Pandas, NumPy, Scikit-Learn, XGBoost/LightGBM (add yours here)
-* **Visualization:** Matplotlib, Seaborn
-* **Database/Queries:** SQL (for data extraction and exploratory analysis)
+• Real-Time Fraud Classification: Identifies fraudulent patterns instantly using machine learning models.
+• Data Anomaly Detection: Flags suspicious transaction amounts, geographical mismatches, or odd purchasing hours.
+• Imbalanced Data Handling: Utilizes techniques like SMOTE or class weighting to address the rarity of fraud instances in datasets.
+• Automated Hyperparameter Optimization: Leverages Optuna to maximize model detection rates.
 
-## 📁 Repository Structure
+🛠️ Tech Stack & Frameworks
+
+• Language: Python
+• Libraries: Pandas, NumPy, Scikit-Learn, XGBoost, Optuna
+• Visualization: Matplotlib, Seaborn
+• Database/Queries: SQL (for data extraction and exploratory analysis)
+
+📁 Repository Structure
+
+text
 ├── data/                  # Placeholder for dataset descriptions or sample data
 ├── notebooks/             # Jupyter notebooks covering EDA and model training
 ├── src/                   # Python source code for data preprocessing and modeling
 ├── .gitignore             # Python gitignore file
 └── README.md              # Project documentation
+Use code with caution.
 
-## 📈 Machine Learning Models & Performance
-We implemented and evaluated multiple Machine Learning algorithms to find the optimal balance between high precision (reducing false positives) and high recall (catching actual fraud). 
+📈 Machine Learning Models & Optimization
 
-* **Model 1: Logistic Regression** - Baseline performance.
-* **Model 2: Random Forest Classifier** - Robust handling of non-linear transaction patterns.
-* **Model 3: XGBoost** - Optimized gradient boosting for maximum accuracy and hyperparameter tuning.
+We implemented and evaluated Random Forest and XGBoost algorithms to identify fraudulent financial actions. To maximize predictive accuracy and prevent overfitting, Optuna was integrated to conduct automated hyperparameter tuning via Bayesian optimization across dozens of trial iterations.
 
-### Evaluation Metrics:
-* **Accuracy:** [e.g., 99.2%]
-* **Precision:** [e.g., 94.5%]
-* **Recall:** [e.g., 88.0%]
-* **ROC-AUC Score:** [e.g., 0.96]
+Performance Metrics Comparison
 
-## 🔧 Installation & Usage
+Below is the direct classification performance comparison following the hyperparameter tuning phase:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com
-   ```
-2. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Run the training notebook or script:
-   ```bash
-   python src/train_model.py
-   ```
+Performance Metric	Random Forest	XGBoost
+Accuracy	92.01%	86.56%
+Precision	30.31%	20.38%
+Recall	41.28%	54.47%
+F1-Score	34.95%	29.66%
+ROC-AUC Score	79.78%	78.48%
 
-## 🔮 Future Enhancements
-* Implementing deep learning models (like Autoencoders) for unsupervised anomaly detection.
-* Building a live API endpoint using FastAPI or Flask to simulate real-time checkout verification.
+
+🔍 Key Insights & Trade-offs
+
+• The Imbalanced Data Challenge: The lower precision and recall scores across both models indicate a highly imbalanced dataset, which is standard in transaction fraud contexts where legitimate payments heavily outnumber scams.
+• Random Forest (Higher Precision): Achieved a higher overall accuracy (92.01%) and F1-score (34.95%). It is more conservative, resulting in fewer false positives (flagging innocent users).
+• XGBoost (Higher Recall): Achieved a significantly higher recall (54.47%). In a real-world financial ecosystem, this means XGBoost is more effective at catching actual fraud cases, even if it leads to a higher rate of initial false alarms.
+
+🔧 Installation & Usage
+
+1. Clone the repository and install requirements via standard package management.
+2. Run the training script located in the source directory.
+
+🔮 Future Enhancements
+
+• Implementing deep learning models for unsupervised anomaly detection.
+• Building a live API endpoint using FastAPI or Flask for real-time verification.
